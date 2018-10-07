@@ -1,23 +1,40 @@
 <template>
-  <div id="app">
-    <img src="./assets/logo.png">
-    <router-view/>
+  <div class="layout">
+    <Header></Header>
+    <div class="layout-content">
+      <SideBar></SideBar>
+      <div class="container">
+        <router-view />
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-export default {
-  name: 'App'
-}
+  import Header from './components/Header.vue'
+  import SideBar from './components/SideBar.vue'
+  export default {
+    components: {
+      Header,
+      SideBar
+    }
+  }
+
 </script>
 
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+<style lang="less">
+  .layout {
+    display: flex;
+    flex-direction: column;
+    .layout-content {
+      flex: 1;
+      display: flex;
+      flex-direction: row;
+      .container {
+        flex: 1;
+        margin:  20px;
+      }
+    }
+  }
+
 </style>
