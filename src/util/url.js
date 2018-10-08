@@ -7,7 +7,9 @@ const URL = {
   getPortfolioList: '/api/getPortfolioList',
   createPortfolio: '/api/createPortfolio',
   updatePortfolio: '/api/updatePortfolio',
-  deletePortfolio: '/api/deletePortfolio'
+  deletePortfolio: '/api/deletePortfolio',
+  login: '/api/login',
+  logout: '/api/logout'
 };
 
 let domain;

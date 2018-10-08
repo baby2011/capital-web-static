@@ -1,17 +1,33 @@
 <template>
   <el-menu mode="horizontal">
-    <el-menu-item class="logo">Chain Capital</el-menu-item>
-    <el-menu-item style="float: right" index="">退出登录</el-menu-item>
+    <el-menu-item index="1" class="logo">Chain Capital</el-menu-item>
+    <el-submenu index="2" style="float: right;">
+      <template slot="title">{{user.real_name}}</template>
+      <el-menu-item @click="logout" index="2-1">退出登录</el-menu-item>
+    </el-submenu>
+
   </el-menu>
 </template>
 <script>
+  import request from '@/util/request'
   export default {
-
+    computed: {
+      user () {
+        return window.user
+      }
+    },
+    methods: {
+      logout() {
+        request.logout().then(() => location.reload())
+      }
+    }
   }
+
 </script>
 <style lang="less">
   .logo {
     font-size: 20px;
     color: #333;
   }
+
 </style>

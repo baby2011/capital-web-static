@@ -95,3 +95,13 @@ exports.deletePortfolio = params => {
     data: params
   });
 };
+exports.login = params => {
+  return post(urlUtil.login, {
+    data: params
+  });
+};
+exports.logout = params => {
+  return post(urlUtil.logout, {
+    data: params
+  })
+}

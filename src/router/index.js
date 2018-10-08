@@ -5,6 +5,7 @@ import Banner from "@/pages/Banner";
 import Team from "@/pages/Team";
 import Portfolio from "@/pages/Portfolio";
 import Community from "@/pages/Community";
+import Login from '@/pages/Login'
 
 Vue.use(Router);
 
@@ -34,6 +35,11 @@ export default new Router({
       path: "/community",
       name: "community",
       component: Community
+    },
+    {
+      path: '/login',
+      name: 'login',
+      component: Login
     }
   ]
 });
