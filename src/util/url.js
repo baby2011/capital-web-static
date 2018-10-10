@@ -1,15 +1,19 @@
 const URL = {
   domain: "//localhost:8080",
   getBannerList: "/api/getBannerList",
-  createBanner: '/api/createBanner',
-  updateBanner: '/api/updateBanner',
-  deleteBanner: '/api/deleteBanner',
-  getPortfolioList: '/api/getPortfolioList',
-  createPortfolio: '/api/createPortfolio',
-  updatePortfolio: '/api/updatePortfolio',
-  deletePortfolio: '/api/deletePortfolio',
-  login: '/api/login',
-  logout: '/api/logout'
+  createBanner: "/api/createBanner",
+  updateBanner: "/api/updateBanner",
+  deleteBanner: "/api/deleteBanner",
+  getPortfolioList: "/api/getPortfolioList",
+  createPortfolio: "/api/createPortfolio",
+  updatePortfolio: "/api/updatePortfolio",
+  deletePortfolio: "/api/deletePortfolio",
+  getTeamList: "/api/getTeamList",
+  createTeam: "/api/createTeam",
+  updateTeam: "/api/updateTeam",
+  deleteTeam: "/api/deleteTeam",
+  login: "/api/login",
+  logout: "/api/logout"
 };
 
 let domain;

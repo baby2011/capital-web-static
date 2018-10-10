@@ -2,20 +2,23 @@ import axios from "axios";
 import urlUtil from "./url";
 import app from "../main";
 
-const get = (url, options) => {
-  return axios(url, {
-    method: "GET",
-    params: options && options.params,
-    responseType: "json"
+const request = options => {
+  return axios({
+    withCredentials: true,
+    responseType: "json",
+    ...options
   })
     .then(response => {
+      if (response.status !== 200) {
+        throw new Error(response.statusText);
+      }
       return response.data;
     })
-    .then(data => {
-      if (data.code !== 200) {
-        throw new Error(data.data.msg);
+    .then(res => {
+      if (res.code !== 200) {
+        throw new Error(res.data.msg);
       }
-      return data.data;
+      return res.data;
     })
     .catch(e => {
       app.$message({
@@ -26,29 +29,21 @@ const get = (url, options) => {
     });
 };
 
+const get = (url, options) => {
+  return request({
+    url,
+    method: "GET",
+    params: options && options.params
+  });
+};
+
 const post = (url, options) => {
-  return axios(url, {
+  return request({
+    url,
     method: "POST",
     params: options && options.params,
-    data: options && options.data,
-    responseType: "json"
-  })
-    .then(response => {
-      return response.data;
-    })
-    .then(data => {
-      if (data.code !== 200) {
-        throw new Error(data.data.msg);
-      }
-      return data.data;
-    })
-    .catch(e => {
-      app.$message({
-        type: "error",
-        message: e.message
-      });
-      throw e;
-    });
+    data: options && options.data
+  });
 };
 
 exports.getBannerList = params => {
@@ -103,5 +98,27 @@ exports.login = params => {
 exports.logout = params => {
   return post(urlUtil.logout, {
     data: params
-  })
-}
+  });
+};
+
+exports.getTeamList = params => {
+  return get(urlUtil.getTeamList, {
+    params: params
+  });
+};
+
+exports.createTeam = params => {
+  return post(urlUtil.createTeam, {
+    data: params
+  });
+};
+exports.updateTeam = params => {
+  return post(urlUtil.updateTeam, {
+    data: params
+  });
+};
+exports.deleteTeam = params => {
+  return post(urlUtil.deleteTeam, {
+    data: params
+  });
+};

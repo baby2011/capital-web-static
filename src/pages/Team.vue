@@ -2,18 +2,13 @@
   <div>
     <el-row>
       <el-col>
-        <el-button @click="showCreateDialog" style="float: right" type="primary" size="mini">添加Banner</el-button>
+        <el-button @click="showCreateDialog" style="float: right" type="primary" size="mini">添加成员</el-button>
       </el-col>
     </el-row>
     <el-table :data="list">
       <el-table-column label="#" prop="id"></el-table-column>
-      <el-table-column label="标题" prop="title"></el-table-column>
-      <el-table-column label="logo">
-        <template slot-scope="scope">
-          <img class="logo" :src="scope.row.logo">
-        </template>
-      </el-table-column>
-      <el-table-column label="内容" prop="content"></el-table-column>
+      <el-table-column label="姓名" prop="name"></el-table-column>
+      <el-table-column label="地址" prop="link"></el-table-column>
       <el-table-column>
         <template slot-scope="scope">
           <el-button @click="showEditDialog(scope.$index, scope.row)" size="mini" type="primary">编辑</el-button>
@@ -21,18 +16,13 @@
         </template>
       </el-table-column>
     </el-table>
-    <el-dialog class="dialog" :visible.sync="dialogVisible" title="添加Banner">
-      <el-form ref="form" size="mini" style="width: 60%" label-width="80px">
-        <el-form-item label="标题">
-          <el-input v-model="form.title" placeholder="请输入标题"></el-input>
+    <el-dialog class="dialog" :visible.sync="dialogVisible" title="添加成员">
+      <el-form ref="form" size="mini" style="width: 80%" label-width="120px">
+        <el-form-item label="姓名">
+          <el-input v-model="form.name" placeholder="请输入姓名"></el-input>
         </el-form-item>
-        <el-form-item label="内容">
-          <el-input :rows="8" type="textarea" v-model="form.content" placeholder="请输入内容"></el-input>
-        </el-form-item>
-        <el-form-item label="logo">
-          <el-upload :action="uploadUrl" :on-success="onUpload">
-            <el-button type="primary">点击上传</el-button>
-          </el-upload>
+        <el-form-item label="领英名片地址">
+          <el-input v-model="form.link" placeholder="请输入领英名片地址"></el-input>
         </el-form-item>
       </el-form>
       <span class="footer">
@@ -51,9 +41,8 @@
         list: [],
         form: {
           id: null,
-          title: null,
-          logo: null,
-          content: null
+          name: null,
+          link: null
         },
         actionType: 'create',
         dialogVisible: false
@@ -65,7 +54,7 @@
       }
     },
     created() {
-      this.getBannerList()
+      this.getTeamList()
     },
     methods: {
       onUpload(response) {
@@ -73,47 +62,47 @@
           this.form.logo = response.data.url
         }
       },
-      getBannerList() {
-        request.getBannerList().then(data => {
+      getTeamList() {
+        request.getTeamList().then(data => {
           this.list = data.list
         })
       },
       onSubmit() {
         if (this.actionType === 'create') {
-          this.createBanner()
+          this.createTeam()
         } else if (this.actionType === 'edit') {
-          this.updateBanner()
+          this.updateTeam()
         }
       },
-      createBanner() {
-        request.createBanner(this.form).then(data => {
+      createTeam() {
+        request.createTeam(this.form).then(data => {
           this.dialogVisible = false
           this.$message({
             type: 'success',
             message: '创建成功'
           })
-          this.getBannerList()
+          this.getTeamList()
 
         })
       },
-      updateBanner() {
-        request.updateBanner(this.form).then(data => {
+      updateTeam() {
+        request.updateTeam(this.form).then(data => {
           this.dialogVisible = false
           this.$message({
             type: 'success',
             message: '更新成功'
           })
-          this.getBannerList()
+          this.getTeamList()
 
         })
       },
-      deleteBanner(id) {
-        request.deleteBanner({ id }).then(data => {
+      deleteTeam(id) {
+        request.deleteTeam({ id }).then(data => {
           this.$message({
             type: 'success',
             message: '删除成功'
           })
-          this.getBannerList()
+          this.getTeamList()
         })
       },
       showCreateDialog() {
@@ -126,18 +115,17 @@
       showEditDialog(index, row) {
         this.actionType = 'edit'
         this.form.id = row.id
-        this.form.title = row.title
-        this.form.content = row.content
-        this.form.logo = row.logo
+        this.form.name = row.name
+        this.form.link = row.link
         this.dialogVisible = true
       },
       onDelete(index, row) {
-        this.$confirm('确定删除该Banner?', '提示', {
+        this.$confirm('确定删除该Team?', '提示', {
           confirmButtonText: '确定',
           cancelButtonText: '取消',
           type: 'warning'
         }).then(() => {
-          this.deleteBanner(row.id)
+          this.deleteTeam(row.id)
         })
       }
     }
