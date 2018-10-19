@@ -12,6 +12,10 @@ const URL = {
   createTeam: "/api/createTeam",
   updateTeam: "/api/updateTeam",
   deleteTeam: "/api/deleteTeam",
+  getCommunityList: "/api/getCommunityList",
+  createCommunity: "/api/createCommunity",
+  updateCommunity: "/api/updateCommunity",
+  deleteCommunity: "/api/deleteCommunity",
   login: "/api/login",
   logout: "/api/logout"
 };

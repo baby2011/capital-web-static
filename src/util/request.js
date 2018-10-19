@@ -122,3 +122,25 @@ exports.deleteTeam = params => {
     data: params
   });
 };
+
+exports.getCommunityList = params => {
+  return get(urlUtil.getCommunityList, {
+    params: params
+  });
+};
+
+exports.createCommunity = params => {
+  return post(urlUtil.createCommunity, {
+    data: params
+  });
+};
+exports.updateCommunity = params => {
+  return post(urlUtil.updateCommunity, {
+    data: params
+  });
+};
+exports.deleteCommunity = params => {
+  return post(urlUtil.deleteCommunity, {
+    data: params
+  });
+};
