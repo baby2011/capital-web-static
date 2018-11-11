@@ -4,6 +4,7 @@
       <el-menu-item index="banner">{{$t('sideBar.banner')}}</el-menu-item>
       <el-menu-item index="team">{{$t('sideBar.team')}}</el-menu-item>
       <el-menu-item index="portfolio">{{$t('sideBar.portfolio')}}</el-menu-item>
+      <el-menu-item index="otherPortfolio">{{$t('sideBar.otherPortfolio')}}</el-menu-item>
       <el-menu-item index="community">{{$t('sideBar.community')}}</el-menu-item>
     </el-menu>
   </div>

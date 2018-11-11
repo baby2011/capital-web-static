@@ -4,6 +4,7 @@ import Home from "@/pages/Home.vue";
 import Banner from "@/pages/Banner";
 import Team from "@/pages/Team";
 import Portfolio from "@/pages/Portfolio";
+import MiniPortfolio from "@/pages/MiniPortfolio";
 import Community from "@/pages/Community";
 import Login from '@/pages/Login'
 
@@ -30,6 +31,11 @@ export default new Router({
       path: "/portfolio",
       name: "portfolio",
       component: Portfolio
+    },
+    {
+      path: "/otherPortfolio",
+      name: "otherPortfolio",
+      component: MiniPortfolio
     },
     {
       path: "/community",

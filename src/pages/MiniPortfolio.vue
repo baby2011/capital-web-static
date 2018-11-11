@@ -58,7 +58,7 @@
           logo: null,
           content: null,
           link: null,
-          type: 1
+          type: 2
         },
         actionType: 'create',
         dialogVisible: false
@@ -79,7 +79,7 @@
         }
       },
       getPortfolioList() {
-        request.getPortfolioList({ type: 1 }).then(data => {
+        request.getPortfolioList({ type: 2 }).then(data => {
           this.list = data.list
         })
       },
