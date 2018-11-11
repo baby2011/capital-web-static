@@ -10,15 +10,15 @@ import "element-ui/lib/theme-chalk/index.css";
 import "./assets/index.less";
 
 import messages from "./i18n/messages";
+import Cookies from 'js-cookie'
 
 Vue.use(VueI18n);
 Vue.use(ElementUI);
 
 Vue.config.productionTip = false;
 
-
 const i18n = new VueI18n({
-  locale: 'cn', // set locale
+  locale: Cookies.get('lang'), // set locale
   messages, // set locale messages
 })
 
